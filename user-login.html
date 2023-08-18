@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Viva Coordination app </title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
+                
+        Boxicons CSS
+        <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                font-family: 'Arial', sans-serif;
+            }
+            header {
+                background-color: #007bff;
+                color: white;
+                text-align: center;
+                padding: 1rem;
+            }
+            .container {
+                margin-top: 2rem;
+            }
+            footer {
+                background-color: #343a40;
+                color: white;
+                text-align: center;
+                padding: 1rem;
+            }
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"></script>
+        <script src="js/script.js"></script>                
+    </head>
+    <body>
+<!-- Set Availability -->
+<section class="container forms">
+<div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
+        <div class="card p-4">
+            <h2 class="text-center mb-4">Set Availability</h2>
+            <form>
+                <div class="form-group">
+                    <input type="date" class="form-control" ng-model="availabilityDate">
+                </div>
+                <div class="form-group">
+                    <!-- From Time in 12-hour format -->
+                    <label>From:</label>
+                    <select ng-model="startHour" class="form-control" style="display:inline;width:20%">
+                        <option ng-repeat="n in [].constructor(12) track by $index" value="{{($index + 1) < 10 ? '0' + ($index + 1) : ($index + 1)}}">{{($index + 1) < 10 ? '0' + ($index + 1) : ($index + 1)}}</option>
+                    </select>
+                    :
+                    <select ng-model="startMinute" class="form-control" style="display:inline;width:20%">
+                        <option ng-repeat="n in [].constructor(60) track by $index" value="{{$index < 10 ? '0' + $index : $index}}">{{$index < 10 ? '0' + $index : $index}}</option>
+                    </select>
+                    <select ng-model="startPeriod" class="form-control" style="display:inline;width:20%">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <!-- To Time in 12-hour format -->
+                    <label>To:</label>
+                    <select ng-model="endHour" class="form-control" style="display:inline;width:20%">
+                        <option ng-repeat="n in [].constructor(12) track by $index" value="{{($index + 1) < 10 ? '0' + ($index + 1) : ($index + 1)}}">{{($index + 1) < 10 ? '0' + ($index + 1) : ($index + 1)}}</option>
+                    </select>
+                    :
+                    <select ng-model="endMinute" class="form-control" style="display:inline;width:20%">
+                        <option ng-repeat="n in [].constructor(60) track by $index" value="{{$index < 10 ? '0' + $index : $index}}">{{$index < 10 ? '0' + $index : $index}}</option>
+                    </select>
+                    <select ng-model="endPeriod" class="form-control" style="display:inline;width:20%">
+                        <option value="AM">AM</option>
+                        <option value="PM">PM</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary btn-block" ng-click="submitAvailability()">Submit Availability</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+     
+        
+<div class="centered-content">
+    <!-- Assigned Time Slots -->
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card p-4">
+                <h2 class="text-center mb-4">Assigned Time Slots</h2>
+                <ul class="list-group">
+                    <li class="list-group-item text-center" ng-repeat="slot in timeSlots">{{ slot }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>
+        <!-- JavaScript -->
+        <script src="js/script.js"></script>
+    </body>
+</html>
